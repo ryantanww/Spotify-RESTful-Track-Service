@@ -15,7 +15,7 @@ class TrackForm(ModelForm):
         instrumentalness = cleaned_data.get("instrumentalness")
         liveness = cleaned_data.get("liveness")
         valence = cleaned_data.get("valence")
-        tempo = cleaned_data.get("tempo")\
+        tempo = cleaned_data.get("tempo")
         
         if popularity < 0 or popularity > 100:
             self.add_error('popularity', 'Popularity must be between 0 and 100.')
