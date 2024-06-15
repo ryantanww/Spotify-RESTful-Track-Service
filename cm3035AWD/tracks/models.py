@@ -12,7 +12,7 @@ class Tracks(models.Model):
     danceability = models.DecimalField(max_digits=5, decimal_places=3) 
     energy = models.DecimalField(max_digits=5, decimal_places=3)        
     key = models.IntegerField()
-    loudness = models.DecimalField(max_digits=6, decimal_places=3)      
+    loudness = models.DecimalField(max_digits=6, decimal_places=3)
     mode = models.IntegerField()
     speechiness = models.DecimalField(max_digits=5, decimal_places=3)   
     acousticness = models.DecimalField(max_digits=5, decimal_places=3)  
