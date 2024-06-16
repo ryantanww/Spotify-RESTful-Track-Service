@@ -13,9 +13,8 @@ def tracks_by_genre(request, genre):
 @api_view(['GET'])
 def popular_tracks(request):
     # Get threshold from query parameters, with default if not provided
-    popularity_threshold = int(request.query_params.get('popularity', 50)) # sort in ascending order instead
+    popularity_threshold = int(request.query_params.get('popularity', 80)) # sort in ascending order instead
     
-
     # Filter tracks based on the threshold
     tracks = Tracks.objects.filter(popularity__gte=popularity_threshold).order_by('-popularity')
 
