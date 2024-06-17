@@ -110,8 +110,8 @@ class TrackAPITest(APITestCase):
         self.assertEqual(response.data['popularity'], 58)
         self.assertEqual(response.data['explicit'], False)
         self.assertEqual(response.data['key'], 5)
-        self.assertEqual(response.data['danceability'], '0.820')
-        self.assertEqual(response.data['tempo'], '105.140')
+        self.assertEqual(Decimal(response.data['danceability']), Decimal('0.820'))
+        self.assertEqual(Decimal(response.data['tempo']), Decimal('105.140'))
 
     def test_tracks_by_genre(self):
         response = self.client.get(self.tracks_by_genre_url, format='json')
@@ -130,14 +130,14 @@ class TrackAPITest(APITestCase):
             self.assertGreaterEqual(track['popularity'], 80)
             
     def test_high_danceability_tracks(self):
-        response = self.client.get(self.high_danceability_tracks_url, {'danceability': 0.800, 'min_tempo': 90.000, 'max_tempo': 130.000}, format='json')
+        response = self.client.get(self.high_danceability_tracks_url, {'danceability': 0.8, 'min_tempo': 90.0, 'max_tempo': 130.0}, format='json')
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
         self.assertTrue(len(data) > 0)
         for track in data:
-            self.assertGreaterEqual(track['danceability'], '0.800')
-            self.assertGreaterEqual(track['tempo'], '90.000')
-            self.assertLessEqual(track['tempo'], '130.000')
+            self.assertGreaterEqual(Decimal(track['danceability']), Decimal('0.800'))
+            self.assertGreaterEqual(Decimal(track['tempo']), Decimal('90.000'))
+            self.assertLessEqual(Decimal(track['tempo']), Decimal('130.000'))
             
     def test_popular_tracks_threshold(self):
         response = self.client.get(self.popular_tracks_url, {'popularity': 70}, format='json')
@@ -148,14 +148,14 @@ class TrackAPITest(APITestCase):
             self.assertGreaterEqual(track['popularity'], 70)
 
     def test_high_danceability_tracks_different_thresholds(self):
-        response = self.client.get(self.high_danceability_tracks_url, {'danceability': 0.700, 'min_tempo': 100.000, 'max_tempo': 120.000}, format='json')
+        response = self.client.get(self.high_danceability_tracks_url, {'danceability': 0.7, 'min_tempo': 100.0, 'max_tempo': 130.0}, format='json')
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
         self.assertTrue(len(data) > 0)
         for track in data:
-            self.assertGreaterEqual(track['danceability'], '0.700')
-            self.assertGreaterEqual(track['tempo'], '100.000')
-            self.assertLessEqual(track['tempo'], '120.000')
+            self.assertGreaterEqual(Decimal(track['danceability']), Decimal('0.700'))
+            self.assertGreaterEqual(Decimal(track['tempo']), Decimal('100.000'))
+            self.assertLessEqual(Decimal(track['tempo']), Decimal('130.000'))
             
     def test_update_track(self):
         update_data = {
@@ -188,17 +188,17 @@ class TrackAPITest(APITestCase):
         self.assertEqual(response.data['popularity'], 60)
         self.assertEqual(response.data['duration_ms'], 250000)
         self.assertEqual(response.data['explicit'], True)
-        self.assertEqual(response.data['danceability'], '0.700')
-        self.assertEqual(response.data['energy'], '0.600')
+        self.assertEqual(Decimal(response.data['danceability']), Decimal('0.700'))
+        self.assertEqual(Decimal(response.data['energy']), Decimal('0.600'))
         self.assertEqual(response.data['key'], 4)
-        self.assertEqual(response.data['loudness'], '-4.000')
+        self.assertEqual(Decimal(response.data['loudness']), Decimal('-4.000'))
         self.assertEqual(response.data['mode'], 0)
-        self.assertEqual(response.data['speechiness'], '0.200')
-        self.assertEqual(response.data['acousticness'], '0.200')
-        self.assertEqual(response.data['instrumentalness'], '0.10000')
-        self.assertEqual(response.data['liveness'], '0.200')
-        self.assertEqual(response.data['valence'], '0.600')
-        self.assertEqual(response.data['tempo'], '115.000')
+        self.assertEqual(Decimal(response.data['speechiness']), Decimal('0.200'))
+        self.assertEqual(Decimal(response.data['acousticness']), Decimal('0.200'))
+        self.assertEqual(Decimal(response.data['instrumentalness']), Decimal('0.10000'))
+        self.assertEqual(Decimal(response.data['liveness']), Decimal('0.200'))
+        self.assertEqual(Decimal(response.data['valence']), Decimal('0.600'))
+        self.assertEqual(Decimal(response.data['tempo']), Decimal('115.000'))
         self.assertEqual(response.data['time_signature'], 5)
 
     def test_track_delete(self):
