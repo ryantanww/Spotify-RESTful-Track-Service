@@ -25,7 +25,7 @@ def popular_tracks(request):
 def high_danceability_tracks(request):
     # Get thresholds from query parameters, with defaults if not provided
     danceability_threshold = float(request.query_params.get('danceability', 0.8))
-    min_tempo = float(request.query_params.get('min_tempo', 100.0))
+    min_tempo = float(request.query_params.get('min_tempo', 90.0))
     max_tempo = float(request.query_params.get('max_tempo', 130.0))
 
     # Filter tracks based on the thresholds
