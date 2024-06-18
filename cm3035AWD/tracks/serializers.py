@@ -5,6 +5,27 @@ class TrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tracks
         fields = '__all__'
+        extra_kwargs = {
+            'track_name': {'help_text': 'Name of the track'},
+            'artists': {'help_text': 'Names of the artists, separated by ; if there are multiple'},
+            'album': {'help_text': 'Name of the album'},
+            'genre': {'help_text': 'Genre of the track'},
+            'popularity': {'help_text': 'Popularity of the track (0-100)'},
+            'duration_ms': {'help_text': 'Duration of the track in milliseconds'},
+            'explicit': {'help_text': 'Indicates whether the track has explicit lyrics'},
+            'danceability': {'help_text': 'Suitability of the track for dancing (0.0 to 1.0)'},
+            'energy': {'help_text': 'Intensity and activity of the track (0.0 to 1.0)'},
+            'key': {'help_text': 'The key the track is in (0-11) What pitch it contains, if there is no key, the value can be -1'},
+            'loudness': {'help_text': 'Overall loudness of the track in decibels (dB)'},
+            'mode': {'help_text': 'Modality of the track (0 for minor, 1 for major)'},
+            'speechiness': {'help_text': 'Presence of spoken words in the track (0.0 to 1.0)'},
+            'acousticness': {'help_text': 'Confidence measure whether the track is acoustic (0.0 to 1.0)'},
+            'instrumentalness': {'help_text': 'Likelihood the track contains no vocals (0.0 to 1.0)'},
+            'liveness': {'help_text': 'Presence of an audience in the recording (0.0 to 1.0)'},
+            'valence': {'help_text': 'Positiveness conveyed by the track (0.0 to 1.0)'},
+            'tempo': {'help_text': 'Estimated tempo of the track in BPM'},
+            'time_signature': {'help_text': 'Estimated time signature of the track (3-7)'},
+        }
         
     def validate_track_name(self, value):
         if not isinstance(value, str) or not value:

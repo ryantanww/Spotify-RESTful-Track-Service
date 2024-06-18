@@ -1,6 +1,7 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,20 +13,55 @@
 </head>
 <body>
     <h1>API List</h1>
-    <table class="table table-striped">
-        <thead>
-        </thead>
-        <tbody>
-            {% for track in tracks %}
-            <tr>
-                <td>{{ track.track_name }}</td>
-                <td>{{ track.artists }}</td>
-                <td>{{ track.album }}</td>
-                <td>{{ track.genre }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+
+    <div class="container">
+        <div class="row">
+            <div>
+                <h2>1. GET - List of all tracks</h2>
+                <p>Using the GET method, return a list of all the tracks in the database displaying only the id, track name and artists name.</p>
+                <p>Endpoint: <a href="http://127.0.0.1:8000/api/tracks/">http://127.0.0.1:8000/api/tracks/</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <h2>2. POST - Add a new track</h2>
+                <p>Using the POST method, add a new track (Validation via the serializers).</p>
+                <p>Endpoint: <a href="http://127.0.0.1:8000/api/tracks/create_track/">http://127.0.0.1:8000/api/tracks/create_track/</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <h2>3. GET, PUT, DELETE - Track detail</h2>
+                <p>Using the GET, PUT, and DELETE methods, return the track detail based on the track id, user will be able to update and delete the track on the same link (Validation via the serializers).</p>
+                <p>Endpoint: <a href="http://127.0.0.1:8000/api/tracks/1">http://127.0.0.1:8000/api/tracks/{id}/</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <h2>4. GET - Tracks by genre</h2>
+                <p>Using the GET method, return a list of all the tracks filtered by the given genre.</p>
+                <p>Endpoint: <a href="http://127.0.0.1:8000/api/tracks/genre/disco/">http://127.0.0.1:8000/api/tracks/genre/{genre}/</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <h2>5. GET - Popular tracks</h2>
+                <p>Using the GET method, return a list of popular tracks with popularity sorted in descending order.</p>
+                <p>Default Endpoint: <a href="http://127.0.0.1:8000/api/tracks/popular_tracks/">http://127.0.0.1:8000/api/tracks/popular_tracks/</a></p>
+                <p>Endpoint with parameter: <a href="http://127.0.0.1:8000/api/tracks/popular_tracks/?popularity=90">http://127.0.0.1:8000/api/tracks/popular_tracks/?popularity=90</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <h2>6. GET - High danceability tracks</h2>
+                <p>Using the GET method, return a list of high danceable tracks with good tempo.</p>
+                <p>Default Endpoint: <a href="http://127.0.0.1:8000/api/tracks/high_danceability_tracks/">http://127.0.0.1:8000/api/tracks/high_danceability_tracks/</a></p>
+                <p>Endpoint with parameter: <a href="http://127.0.0.1:8000/api/tracks/high_danceability_tracks/?danceability=0.90&min_tempo=90&max_tempo=140">http://127.0.0.1:8000/api/tracks/high_danceability_tracks/?danceability=0.90&min_tempo=90&max_tempo=140</a></p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
+
 {% endblock %}
