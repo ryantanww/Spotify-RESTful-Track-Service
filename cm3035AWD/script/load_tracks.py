@@ -4,15 +4,15 @@ import django
 import csv
 
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cm3035AWD.settings')
 django.setup()
 
-data_file = 'scripts/updated_track_data.csv'
-
 from tracks.models import *
+
+data_file = 'script/updated_track_data.csv'
 
 Tracks.objects.all().delete()
 
