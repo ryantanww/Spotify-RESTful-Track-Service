@@ -3,17 +3,17 @@ import sys
 import django
 import csv
 
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
-#sys.path.append("C:/Users/hu1Dr/git_repository/CM3035-Advanced-Web-Development/cm3035AWD")
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cm3035AWD.settings')
 django.setup()
 
-from tracks.models import Tracks
-
 data_file = 'scripts/updated_track_data.csv'
 
-# Clear existing data
+from tracks.models import *
+
 Tracks.objects.all().delete()
 
 try:
