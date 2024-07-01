@@ -33,6 +33,8 @@ ALLOWED_HOSTS = [
 
 # Application definition
 
+# INSTALLED_APPS is a list of all Django applications that are activated in this project.
+# Added rest_framework, django_bootstrap5 and tracks to it
 INSTALLED_APPS = [
     'rest_framework',
     'django_bootstrap5',
@@ -86,7 +88,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -105,7 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -122,7 +122,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

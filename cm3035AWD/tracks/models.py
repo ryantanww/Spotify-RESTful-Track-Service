@@ -1,7 +1,8 @@
 from django.db import models
 
-# Create your models here.
+# Defines the Tracks model
 class Tracks(models.Model):
+    # Create fields with appropriate data type
     track_name = models.CharField(max_length=255)
     artists = models.CharField(max_length=255)
     album = models.CharField(max_length=255)
@@ -22,6 +23,6 @@ class Tracks(models.Model):
     tempo = models.DecimalField(max_digits=6, decimal_places=3)        
     time_signature = models.IntegerField()
     
-
+    # Defines the string representation of the model returning the track name
     def __str__(self):
         return self.track_name

@@ -1,10 +1,14 @@
 import factory
 from .models import *
 
+# Defines a factory for creating instances of the Tracks model for testing
 class TracksFactory(factory.django.DjangoModelFactory):
+    # Meta class to specify the model to include in the factory
     class Meta:
+        # Link the Tracks model to the factory
         model = Tracks
     
+    # Defines the default values for the Tracks model when creating instances for testing using Faker
     track_name = factory.Faker('word')
     artists = factory.Faker('name')
     album = factory.Faker('word')

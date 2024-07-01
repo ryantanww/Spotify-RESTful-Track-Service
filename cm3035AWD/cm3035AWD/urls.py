@@ -17,7 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+# URL patterns for the Django Project
 urlpatterns = [
+    # Includes all the URL patterns for my application tracks
     path('', include('tracks.urls')),
+    
+    # URL for Django admin interface
     path('admin/', admin.site.urls),
 ]
